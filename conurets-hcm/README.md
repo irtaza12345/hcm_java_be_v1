@@ -13,7 +13,7 @@
     * `docker-compose up -d --build`
 4. Let's authentication and get JWT token
     ``` 
-    curl -X POST http://localhost:8081/stpete-web/api/authenticate -H 'Content-Type: application/json' -d '{ "origin": "WEB", "username": "superadmin", "password": "password" }' 
+    curl -X POST http://localhost:9071/hcm/api/authenticate -H 'Content-Type: application/json' -d '{ "origin": "WEB", "emailAddress": "superadmin@conurets.com", "password": "superadmin" }' 
     ```
    You will get following format Json response. data field has the JWT token. It requires for authorization to call rest api.
     ```

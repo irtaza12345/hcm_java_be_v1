@@ -9,7 +9,7 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Conure HCM :: Project Parent POM</name>
+    <name>Conure HCM :: HCM POM</name>
 
     <parent>
         <groupId>com.hcm.parent</groupId>
@@ -131,21 +131,21 @@
     </dependencies>
 
     <build>
-        <finalName>${build.file.name}</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

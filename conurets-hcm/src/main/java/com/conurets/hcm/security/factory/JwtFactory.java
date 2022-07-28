@@ -103,7 +103,9 @@ public class JwtFactory implements Serializable {
      * @return
      */
     private String generateToken(Map<String, Object> claims, String subject) {
-        String strSecret = PreferenceCache.getProperty(APConstants.JWT_SECRET);
+        //String strSecret = PreferenceCache.getProperty(APConstants.JWT_SECRET);
+        String strSecret = PreferenceCache.getProperty("conurets.hcm.jwt.secret");
+
         int iExpiration = HCMUtil.stringToInteger(PreferenceCache.getProperty(APConstants.JWT_EXPIRATION));
         String strIssuer = PreferenceCache.getProperty(APConstants.JWT_ISSUER);
 

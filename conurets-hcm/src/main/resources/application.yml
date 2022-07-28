@@ -6,14 +6,13 @@ server:
 spring:
   application:
     name: Conure HCM Web
-#  For deployement in any enviroment let say stage,dev or Prod
+#  For deployment in any environment, let say stage, dev or Prod
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/conurets_hcm}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://hassan-postgres.cwqf1bocdbou.ap-south-1.rds.amazonaws.com/conurets_hcm}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:conure123}
+    password: ${SPRING_DATASOURCE_PASSWORD:abc123++}
     driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
-  main:
-    allow-circular-references: true
+
 #for running the code in local enviroment
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/conurets_hcm
@@ -33,6 +32,8 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  main:
+    allow-circular-references: true
 
 logging:
   file.name: /logs/hcm.web.log
