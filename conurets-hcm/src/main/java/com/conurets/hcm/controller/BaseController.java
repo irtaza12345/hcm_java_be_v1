@@ -1,6 +1,7 @@
 package com.conurets.hcm.controller;
 
-import com.conurets.hcm.base.response.entity.BaseResponseEntity;
+
+import com.conurets.hcm.commons.base.response.entity.BaseResponseEntity;
 import com.conurets.hcm.service.factory.ServiceFactory;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

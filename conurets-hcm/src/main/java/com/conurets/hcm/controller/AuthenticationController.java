@@ -1,9 +1,9 @@
 package com.conurets.hcm.controller;
 
-import com.conurets.hcm.base.dto.request.AuthenticationRequestDTO;
-import com.conurets.hcm.base.dto.response.AuthenticationResponseDTO;
-import com.conurets.hcm.base.dto.response.BaseResponseDTO;
-import com.conurets.hcm.base.exception.HCMException;
+import com.conurets.hcm.commons.base.dto.request.AuthenticationRequestDTO;
+import com.conurets.hcm.commons.base.dto.response.AuthenticationResponseDTO;
+import com.conurets.hcm.commons.base.dto.response.BaseResponseDTO;
+import com.conurets.hcm.commons.base.exception.HCMException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

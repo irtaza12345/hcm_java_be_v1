@@ -1,9 +1,10 @@
 package com.conurets.hcm.controller;
 
-import com.conurets.hcm.base.dto.request.AddAttendanceRequestDTO;
-import com.conurets.hcm.base.dto.response.AttendanceResponseDTO;
-import com.conurets.hcm.base.dto.response.BaseResponseDTO;
-import com.conurets.hcm.base.exception.HCMException;
+
+import com.conurets.hcm.commons.base.dto.request.AddAttendanceRequestDTO;
+import com.conurets.hcm.commons.base.dto.response.AttendanceResponseDTO;
+import com.conurets.hcm.commons.base.dto.response.BaseResponseDTO;
+import com.conurets.hcm.commons.base.exception.HCMException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class AttendanceController extends BaseController {
     @ResponseBody
     @GetMapping(value = "/api/attendance/add")
     public BaseResponseDTO addAttendance(@PathVariable String enrollNumber, @PathVariable Integer isInvalid, @PathVariable Integer attState,
-                                        @PathVariable Integer verifyMethod, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
-                                        @PathVariable Integer hour, @PathVariable Integer minute, @PathVariable Integer second, @PathVariable Integer workCode) throws HCMException {
+                                         @PathVariable Integer verifyMethod, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
+                                         @PathVariable Integer hour, @PathVariable Integer minute, @PathVariable Integer second, @PathVariable Integer workCode) throws HCMException {
         getServiceFactory().getAttendanceService();
 
         return response();

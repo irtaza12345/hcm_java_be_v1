@@ -1,10 +1,9 @@
 package com.conurets.hcm.controller;
 
-import com.conurets.hcm.base.dto.response.BaseResponseDTO;
-import com.conurets.hcm.commons.utils.EmailUtils;
+import com.conurets.hcm.commons.base.dto.response.BaseResponseDTO;
+import com.conurets.hcm.commons.base.util.EmailUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -16,7 +15,7 @@ public class EmailController {
     public BaseResponseDTO<?> TestEmail(){
 
         BaseResponseDTO <String> baseResponseDTO = new BaseResponseDTO<>();
-        baseResponseDTO.setData(EmailUtils.TestEmail("Hassan Adnan"));
+        baseResponseDTO.setData(EmailUtil.TestEmail("Hassan Adnan"));
         return baseResponseDTO;
     }
 }

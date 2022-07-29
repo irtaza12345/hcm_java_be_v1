@@ -1,6 +1,6 @@
 package com.conurets.hcm.configuration.security;
 
-import com.conurets.hcm.security.CustomWebSecurityConfigurerAdapter;
+import com.conurets.hcm.commons.security.CustomWebSecurityConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

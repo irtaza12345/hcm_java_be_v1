@@ -1,8 +1,9 @@
 package com.conurets.hcm.service;
 
-import com.conurets.hcm.base.dto.request.AddAttendanceRequestDTO;
-import com.conurets.hcm.base.dto.response.AttendanceResponseDTO;
-import com.conurets.hcm.base.exception.HCMException;
+
+import com.conurets.hcm.commons.base.dto.request.AddAttendanceRequestDTO;
+import com.conurets.hcm.commons.base.dto.response.AttendanceResponseDTO;
+import com.conurets.hcm.commons.base.exception.HCMException;
 
 import java.util.List;
 
