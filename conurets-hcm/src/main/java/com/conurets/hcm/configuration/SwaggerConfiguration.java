@@ -25,11 +25,11 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
-                "Spring Boot Blog REST APIs",
-                "Spring Boot Blog REST API Documentation",
-                "1",
+                "HCM Backend",
+                "Human Capital Management Project",
+                "1.0",
                 "Terms of service",
-                new Contact("Ramesh Fadatare", "www.javaguides.net", "ramesh@gmail.com"),
+                new Contact("Conure Telecom Services", "www.conurets.com", "hassan.adnan@conurets.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList()

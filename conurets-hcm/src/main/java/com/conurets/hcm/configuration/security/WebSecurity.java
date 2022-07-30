@@ -15,7 +15,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends CustomWebSecurityConfigurerAdapter {
     private static final String[] URL_API = new String[]{"/api/authenticate", "/api/logout"};
-    private static final String[] URL_RESOURCE = new String[]{"/v3/api-docs/**", "/swagger-ui/**"};
+    private static final String[] URL_RESOURCE = new String[]{"/v3/api-docs/**", "/swagger-ui/**","/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"};
     private static final String[] URL_WEBSOCKET = new String[]{};
 
     /**
