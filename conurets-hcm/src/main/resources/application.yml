@@ -1,0 +1,48 @@
+server:
+  port: 9071
+  servlet:
+    context-path: /hcm
+
+spring:
+  application:
+    name: Conure HCM Web
+#  For deployment in any environment, let say stage, dev or Prod
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://hassan-postgres.cwqf1bocdbou.ap-south-1.rds.amazonaws.com/conurets_hcm}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:abc123++}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
+
+#for running the code in local enviroment
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/conurets_hcm
+#    username: postgres
+#    password: conure123
+#    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+      jdbc:
+        lob:
+          non_contextual_creation: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  main:
+    allow-circular-references: true
+
+logging:
+  file.name: /logs/hcm.web.log
+  pattern:
+    console: "%d{ISO8601} [%d{z}] - %-5p [%t]: [%C] %m%n"
+    file: "%d{ISO8601} [%d{z}] - %-5p [%t]: [%C] %m%n"
+  level:
+    root: INFO
+    org.springframework.*: INFO
+    com.conurets.hcm.*: INFO
+
+

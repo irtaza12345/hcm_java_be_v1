@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Conure HCM Commons
+  #  For deployment in any environment, let say stage, dev or Prod
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://hassan-postgres.cwqf1bocdbou.ap-south-1.rds.amazonaws.com/conurets_hcm}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:abc123++}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
