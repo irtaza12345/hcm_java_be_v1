@@ -50,6 +50,7 @@ public class CityMapper extends BaseMapper {
         cityResponseDTO.setCityCode(city.getCityCode());
         cityResponseDTO.setCityName(city.getCityName());
         cityResponseDTO.setStateId(city.getId());
+        //this line is only for test purpose
         return cityResponseDTO;
     }
 
