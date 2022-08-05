@@ -28,11 +28,49 @@ public class CityMapper extends BaseMapper {
     public City add(AddCityRequestDTO model) throws HCMException {
         City city = new City();
         city.setStatus(model.getStatus());
+        city.setCityCode(model.getCityCode());
+        city.setCityName(model.getCityName());
+        city.setState(getDaoFactory().getStateDAO().findById(model.getStateId()));
+        addAuditingInformation(city);
+        return city;
+    }
+
+
+
+
+    /**
+     *
+     * @param city
+     * @return
+     * @throws HCMException
+     */
+    public CityResponseDTO find(City city) throws HCMException {
+        CityResponseDTO cityResponseDTO = new CityResponseDTO();
+        cityResponseDTO.setStatus(HCMUtil.getStatus(city.getStatus()));
+        cityResponseDTO.setCityCode(city.getCityCode());
+        cityResponseDTO.setCityName(city.getCityName());
+        cityResponseDTO.setStateId(city.getId());
+        return cityResponseDTO;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws HCMException
+     */
+    public City findById(long id) throws HCMException {
+        City city = getDaoFactory().getCityDAO().findById(id);
+
+        if (city == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
 
         addAuditingInformation(city);
 
         return city;
     }
+
 
     /**
      *
@@ -46,14 +84,14 @@ public class CityMapper extends BaseMapper {
         if (city == null) {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
-
         city.setStatus(model.getStatus());
-
+        city.setCityCode(model.getCityCode());
+        city.setCityName(model.getCityName());
+        city.setState(getDaoFactory().getStateDAO().findById(model.getStateId()));
         addAuditingInformation(city);
 
         return city;
     }
-
     /**
      *
      * @param id
@@ -67,23 +105,10 @@ public class CityMapper extends BaseMapper {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
 
-        city.setStatus(HCMConstants.Common.STATUS_CODE_DELETE);
+        city.setStatus(HCMConstants.Common.STATUS_CODE_INACTIVE);
 
         addAuditingInformation(city);
 
         return city;
-    }
-
-    /**
-     *
-     * @param city
-     * @return
-     * @throws HCMException
-     */
-    public CityResponseDTO find(City city) throws HCMException {
-        CityResponseDTO cityResponseDTO = new CityResponseDTO();
-        cityResponseDTO.setStatus(HCMUtil.getStatus(city.getStatus()));
-
-        return cityResponseDTO;
     }
 }

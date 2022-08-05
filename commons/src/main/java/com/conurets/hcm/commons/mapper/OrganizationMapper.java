@@ -33,65 +33,14 @@ public class OrganizationMapper extends BaseMapper {
         organization.setPhoneNumber1(model.getPhoneNumber1());
         organization.setPhoneNumber2(model.getPhoneNumber2());
         organization.setPostalCode(model.getPostalCode());
-        organization.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
-        organization.setState(getDaoFactory().getStateDAO().findById(model.getStateId()));
         organization.setCity(getDaoFactory().getCityDAO().findById(model.getCityId()));
-        organization.setStatus(model.getStatus());
-
-        addAuditingInformation(organization);
-
-        return organization;
-    }
-
-    /**
-     *
-     * @param model
-     * @return
-     * @throws HCMException
-     */
-    public Organization update(UpdateOrganizationRequestDTO model) throws HCMException {
-        Organization organization = getDaoFactory().getOrganizationDAO().findById(model.getOrganizationId());
-
-        if (organization == null) {
-            HCMHelper.handleResultNotFound(101, "No result found");
-        }
-
-        organization.setName(model.getName());
-        organization.setAddress(model.getAddress());
-        organization.setEmailAddress(model.getEmailAddress());
-        organization.setPhoneNumber1(model.getPhoneNumber1());
-        organization.setPhoneNumber2(model.getPhoneNumber2());
-        organization.setPostalCode(model.getPostalCode());
-        organization.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
         organization.setState(getDaoFactory().getStateDAO().findById(model.getStateId()));
-        organization.setCity(getDaoFactory().getCityDAO().findById(model.getCityId()));
         organization.setStatus(model.getStatus());
-
+        organization.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
         addAuditingInformation(organization);
 
         return organization;
     }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws HCMException
-     */
-    public Organization delete(long id) throws HCMException {
-        Organization organization = getDaoFactory().getOrganizationDAO().findById(id);
-
-        if (organization == null) {
-            HCMHelper.handleResultNotFound(101, "No result found");
-        }
-
-        organization.setStatus(HCMConstants.Common.STATUS_CODE_DELETE);
-
-        addAuditingInformation(organization);
-
-        return organization;
-    }
-
     /**
      *
      * @param organization
@@ -111,7 +60,67 @@ public class OrganizationMapper extends BaseMapper {
         organizationResponseDTO.setState(organization.getState().getStateName());
         organizationResponseDTO.setCity(organization.getCity().getCityName());
         organizationResponseDTO.setStatus(HCMUtil.getStatus(organization.getStatus()));
-
         return organizationResponseDTO;
     }
+    /**
+     *
+     * @param id
+     * @return
+     * @throws HCMException
+     */
+    public Organization findById(long id) throws HCMException {
+        Organization organization = getDaoFactory().getOrganizationDAO().findById(id);
+
+        if (organization == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
+        addAuditingInformation(organization);
+        return organization;
+    }
+
+    /**
+     *
+     * @param model
+     * @return
+     * @throws HCMException
+     */
+    public Organization update(UpdateOrganizationRequestDTO model) throws HCMException {
+        Organization organization = getDaoFactory().getOrganizationDAO().findById(model.getOrganizationId());
+
+        if (organization == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
+        organization.setName(model.getName());
+        organization.setAddress(model.getAddress());
+        organization.setEmailAddress(model.getEmailAddress());
+        organization.setPhoneNumber1(model.getPhoneNumber1());
+        organization.setPhoneNumber2(model.getPhoneNumber2());
+        organization.setPostalCode(model.getPostalCode());
+        organization.setState(getDaoFactory().getStateDAO().findById(model.getStateId()));
+        organization.setCity(getDaoFactory().getCityDAO().findById(model.getCityId()));
+        organization.setStatus(model.getStatus());
+        organization.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
+        addAuditingInformation(organization);
+        return organization;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws HCMException
+     */
+    public Organization delete(long id) throws HCMException {
+        Organization organization = getDaoFactory().getOrganizationDAO().findById(id);
+
+        if (organization == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
+        organization.setStatus(HCMConstants.Common.STATUS_CODE_INACTIVE);
+        addAuditingInformation(organization);
+        return organization;
+    }
+
+
+
 }

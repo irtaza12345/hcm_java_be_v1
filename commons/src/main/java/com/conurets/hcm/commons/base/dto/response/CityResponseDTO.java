@@ -29,4 +29,9 @@ public class CityResponseDTO implements Serializable {
     private String organizationName;
     private String companyName;
     private String branchName;
+    private String cityCode;
+    private String cityName;
+    private Long stateId;
+
+
 }

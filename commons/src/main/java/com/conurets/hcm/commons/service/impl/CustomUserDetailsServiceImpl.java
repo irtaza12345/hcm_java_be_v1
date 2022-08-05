@@ -37,7 +37,8 @@ public class CustomUserDetailsServiceImpl extends BaseServiceImpl implements Cus
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        User user = getDaoFactory().getUserDAO().findByKeyValue("emailAddress", username);
+        User user = getDaoFactory().getUserDAO().findById(1);
+        //User user = getDaoFactory().getUserDAO().findByKeyValue("emailAddress", username);
 
         if (user == null) {
             HCMHelper.handleResultNotFound(HCMStatusConstants.STATUS_CODE_NO_USER_FOUND, HCMStatusConstants.STATUS_MSG_NO_USER_FOUND);

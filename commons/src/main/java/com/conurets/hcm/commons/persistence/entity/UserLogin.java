@@ -19,7 +19,7 @@ public class UserLogin extends BaseEntity {
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
-    @Column(name = "str_credential", nullable = false, length = 30)
+    @Column(name = "str_credential", nullable = false, length = 100)
     private String credential;
 
     @Column(name = "int_wrong_credentials", nullable = true, length = 2)

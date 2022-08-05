@@ -28,11 +28,47 @@ public class StateMapper extends BaseMapper {
     public State add(AddStateRequestDTO model) throws HCMException {
         State state = new State();
         state.setStatus(model.getStatus());
+        state.setStateCode(model.getStateCode());
+        state.setStateName(model.getStateName());
+        state.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
+        addAuditingInformation(state);
+        return state;
+    }
+
+    /**
+     *
+     * @param state
+     * @return
+     * @throws HCMException
+     */
+
+    public StateResponseDTO find(State state) throws HCMException{
+        StateResponseDTO stateResponseDTO = new StateResponseDTO();
+        stateResponseDTO.setStatus(HCMUtil.getStatus(state.getStatus()));
+        stateResponseDTO.setStateId(state.getId());
+        stateResponseDTO.setStateCode(state.getStateCode());
+        stateResponseDTO.setStateName(state.getStateName());
+        stateResponseDTO.setCountryId(state.getCountry().getId());
+        return stateResponseDTO;
+    }
+    /**
+     *
+     * @param id
+     * @return
+     * @throws HCMException
+     */
+    public State findStateById(long id) throws HCMException {
+        State state = getDaoFactory().getStateDAO().findById(id);
+
+        if (state == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
 
         addAuditingInformation(state);
 
         return state;
     }
+
 
     /**
      *
@@ -46,14 +82,13 @@ public class StateMapper extends BaseMapper {
         if (state == null) {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
-
         state.setStatus(model.getStatus());
-
+        state.setStateCode(model.getStateCode());
+        state.setStateName(model.getStateName());
+        state.setCountry(getDaoFactory().getCountryDAO().findById(model.getCountryId()));
         addAuditingInformation(state);
-
         return state;
     }
-
     /**
      *
      * @param id
@@ -67,23 +102,11 @@ public class StateMapper extends BaseMapper {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
 
-        state.setStatus(HCMConstants.Common.STATUS_CODE_DELETE);
+        state.setStatus(HCMConstants.Common.STATUS_CODE_INACTIVE);
 
         addAuditingInformation(state);
 
         return state;
     }
 
-    /**
-     *
-     * @param user
-     * @return
-     * @throws HCMException
-     */
-    public StateResponseDTO find(State user) throws HCMException {
-        StateResponseDTO stateResponseDTO = new StateResponseDTO();
-        stateResponseDTO.setStatus(HCMUtil.getStatus(user.getStatus()));
-
-        return stateResponseDTO;
-    }
 }

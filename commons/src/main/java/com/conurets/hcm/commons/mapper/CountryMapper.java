@@ -28,7 +28,39 @@ public class CountryMapper extends BaseMapper {
     public Country add(AddCountryRequestDTO model) throws HCMException {
         Country country = new Country();
         country.setStatus(model.getStatus());
+        country.setCountryCode(model.getCountryCode());
+        country.setCountryName(model.getCountryName());
+        addAuditingInformation(country);
+        return country;
+    }
+    /**
+     *
+     * @param country
+     * @return
+     * @throws HCMException
+     */
+    public CountryResponseDTO find(Country country) throws HCMException {
+        return CountryResponseDTO.builder()
+                .countryId(country.getId())
+                .countryCode(country.getCountryCode())
+                .countryName(country.getCountryName())
+                .status(HCMUtil.getStatus(country.getStatus()))
+                .build();
+    }
 
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws HCMException
+     */
+    public Country findById(long id) throws HCMException {
+        Country country = getDaoFactory().getCountryDAO().findById(id);
+
+        if (country == null) {
+            HCMHelper.handleResultNotFound(101, "No result found");
+        }
         addAuditingInformation(country);
 
         return country;
@@ -46,11 +78,10 @@ public class CountryMapper extends BaseMapper {
         if (country == null) {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
-
         country.setStatus(model.getStatus());
-
+        country.setCountryCode(model.getCountryCode());
+        country.setCountryName(model.getCountryName());
         addAuditingInformation(country);
-
         return country;
     }
 
@@ -67,23 +98,12 @@ public class CountryMapper extends BaseMapper {
             HCMHelper.handleResultNotFound(101, "No result found");
         }
 
-        country.setStatus(HCMConstants.Common.STATUS_CODE_DELETE);
+        country.setStatus(HCMConstants.Common.STATUS_CODE_INACTIVE);
 
         addAuditingInformation(country);
 
         return country;
     }
 
-    /**
-     *
-     * @param user
-     * @return
-     * @throws HCMException
-     */
-    public CountryResponseDTO find(Country user) throws HCMException {
-        CountryResponseDTO countryResponseDTO = new CountryResponseDTO();
-        countryResponseDTO.setStatus(HCMUtil.getStatus(user.getStatus()));
 
-        return countryResponseDTO;
-    }
 }
