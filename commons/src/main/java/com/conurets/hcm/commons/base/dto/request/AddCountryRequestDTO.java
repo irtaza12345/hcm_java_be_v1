@@ -18,7 +18,8 @@ public class AddCountryRequestDTO extends BaseRequestDTO {
     @Size(min = 1, max = 80, message = "Join date must have valid format")
     private String countryName;
     @NotEmpty(message = "Join date must not be empty")
-    @Size(min = 1, max = 80, message = "Join date must have valid format")
+    @Size(min = 1, max = 80, message = "Join date must have valid formats ")
     private String countryCode;
     private Integer status;
+    //integer field.
 }
